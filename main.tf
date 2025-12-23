@@ -39,7 +39,7 @@ resource "akamai_property" "redirect_property" {
     cloudlet_policy_name = resource.akamai_cloudlets_policy.edge_redirector_policy.name
   })
   use_hostname_bucket = true
-  version_notes       = "Terraform managed property using Hostname Bucket using Edge Redirector cloudlet."
+  version_notes       = "Terraform managed property using Hostname Bucket and the Edge Redirector cloudlet."
 }
 
 # Conditionally create or lookup Akamai CPcode if cpcode is defined
