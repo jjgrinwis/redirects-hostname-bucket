@@ -96,3 +96,4 @@ custom_zones = ["shop.example.com"]
 - **Provider Aliases**: This config uses a provider alias `akamai.edgedns` for DNS operations. Ensure your `.edgerc` has a `[dns]` section or configure the provider block in `provider.tf` accordingly.
 - **Certificate Activation**: The first run creates the property and bucket. Certificate validation happens automatically via the DNS records created.
 - **Hostname Buckets**: This feature allows for faster updates. Adding a new hostname to `var.hostname_redirects` updates the bucket and DNS records without necessarily requiring a full property activation (though Terraform may trigger one if the Cloudlet policy changes).
+- **Redirect Policy Limit**: There is a limit of 5000 redirect entries per policy. If more are needed an extra redirect policy should be used but ths requires some change of the code.
