@@ -9,6 +9,7 @@ This Terraform configuration deploys a scalable redirect solution on Akamai usin
 - **Automated Certificate Validation**:
   - Extracts SBD (Secure By Default) DNS challenges.
   - Automatically creates the required `_acme-challenge` CNAME records in Akamai Edge DNS.
+  - When activated on Akamai the production network the Domain Ownership should be automatically be validated.
 - **Smart DNS Zone Handling**: Intelligently determines the correct DNS zone for records, supporting custom/delegated subzones.
 - **Flexible Akamai Network selection**: Supports both Standard TLS (`edgesuite.net`) and Enhanced TLS (`edgekey.net`) based on configuration.
 - **Conditional CP Code**: Uses an existing CP code or creates a new one if provided. If none provided it falls back to the default CP code behavior.
@@ -95,7 +96,3 @@ custom_zones = ["shop.example.com"]
 - **Provider Aliases**: This config uses a provider alias `akamai.edgedns` for DNS operations. Ensure your `.edgerc` has a `[dns]` section or configure the provider block in `provider.tf` accordingly.
 - **Certificate Activation**: The first run creates the property and bucket. Certificate validation happens automatically via the DNS records created.
 - **Hostname Buckets**: This feature allows for faster updates. Adding a new hostname to `var.hostname_redirects` updates the bucket and DNS records without necessarily requiring a full property activation (though Terraform may trigger one if the Cloudlet policy changes).
-
-## 📋 TODO
-
-- **Domain Ownership Manager (2026)**: Starting in 2026, Akamai will require [Domain Ownership Manager](https://techdocs.akamai.com/domain-validation/docs/welcome) for domain validation. As of now, there is no Terraform provider integration for Domain Ownership Manager. This configuration will need to be updated once Terraform support becomes available.
