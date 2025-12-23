@@ -31,7 +31,7 @@ This Terraform configuration deploys a scalable redirect solution on Akamai usin
 | Variable             | Description                                                                                                       | Default                     |
 | :------------------- | :---------------------------------------------------------------------------------------------------------------- | :-------------------------- |
 | `hostname_redirects` | **Core Variable**. A map where keys are hostnames and values are the target redirect URLs.                        | (Example map provided)      |
-| `property_name`      | Name of the Akamai Property to create.                                                                            | `redirects.great-demo.com`  |
+| `property_name`      | Name of the Akamai Property to create.                                                                            | `redirects.example.com`     |
 | `domain_suffix`      | Determines security level. Use `edgekey.net` for ESSL (HTTPS) or `edgesuite.net` for Standard.                    | `edgesuite.net`             |
 | `cpcode`             | Optional. ID of an existing CP code. If empty, uses default CP code.                                              | `""`                        |
 | `custom_zones`       | List of DNS zones that are delegated/separate from the main domain. Helps the DNS logic find the right zone file. | `["subzone01.example.com"]` |
@@ -98,4 +98,4 @@ custom_zones = ["shop.example.com"]
 
 ## 📋 TODO
 
-- **Domain Ownership Manager (2026)**: Starting in 2026, Akamai will require [Domain Ownership Manager](https://techdocs.akamai.com/domain-validation/docs/welcome) for domain validation. This replaces the current SBD DNS challenge workflow. As of now, there is no Terraform provider integration for Domain Ownership Manager. This configuration will need to be updated once Terraform support becomes available.
+- **Domain Ownership Manager (2026)**: Starting in 2026, Akamai will require [Domain Ownership Manager](https://techdocs.akamai.com/domain-validation/docs/welcome) for domain validation. As of now, there is no Terraform provider integration for Domain Ownership Manager. This configuration will need to be updated once Terraform support becomes available.
