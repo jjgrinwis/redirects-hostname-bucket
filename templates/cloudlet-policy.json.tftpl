@@ -1,0 +1,18 @@
+${jsonencode([
+  for hostname in sort(keys(hostname_redirects)) : {
+    type                     = "erMatchRule"
+    name                     = "redirect-${replace(hostname, ".", "-")}"
+    matches = [{
+      matchType     = "regex"
+      matchValue    = "https?://${hostname}"
+      matchOperator = "equals"
+      caseSensitive = false
+      negate        = false
+    }]
+    useRelativeUrl           = "none"
+    statusCode               = 301
+    redirectURL              = hostname_redirects[hostname]
+    useIncomingQueryString   = false
+    useIncomingSchemeAndHost = false
+  }
+])}

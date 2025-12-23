@@ -1,0 +1,77 @@
+${jsonencode(
+{
+    "rules": {
+        "name": "default",
+        "children": [
+            {
+                "name": "Redirects",
+                "children": [],
+                "behaviors": [
+                    {
+                        "name": "edgeRedirector",
+                        "options": {
+                            "enabled": true,
+                            "isSharedPolicy": false,
+                            "cloudletPolicy": {
+                                "id": cloudlet_policy_id,
+                                "name": cloudlet_policy_name
+                            }
+                        }
+                    }
+                ],
+                "criteria": [],
+                "criteriaMustSatisfy": "all",
+                "comments": ""
+            }
+        ],
+        "behaviors": [
+            {
+                "name": "origin",
+                "options": {
+                    "cacheKeyHostname": "REQUEST_HOST_HEADER",
+                    "compress": true,
+                    "enableTrueClientIp": true,
+                    "forwardHostHeader": "REQUEST_HOST_HEADER",
+                    "httpPort": 80,
+                    "httpsPort": 443,
+                    "minTlsVersion": "DYNAMIC",
+                    "originCertificate": "",
+                    "originSni": true,
+                    "originType": "CUSTOMER",
+                    "ports": "",
+                    "tlsVersionTitle": "",
+                    "trueClientIpClientSetting": false,
+                    "trueClientIpHeader": "True-Client-IP",
+                    "verificationMode": "PLATFORM_SETTINGS",
+                    "hostname": "dummy.org",
+                    "ipVersion": "IPV4"
+                }
+            },
+            {
+                "name": "caching",
+                "options": {
+                    "behavior": "NO_STORE"
+                }
+            },
+            {
+                "name": "http2",
+                "options": {
+                    "enabled": ""
+                }
+            },
+            {
+                "name": "cpCode",
+                "options": merge(
+                    { enableDefaultContentProviderCode = cpcode == 0 },
+                    cpcode != 0 ? { value = { id = cpcode } } : {}
+                )
+            }
+        ],
+        "options": {
+            "is_secure": is_secure
+        },
+        "variables": [],
+        "comments": "The Default Rule template contains all the necessary and recommended features. Rules are evaluated from top to bottom and the last matching rule wins."
+    }
+}
+)}
