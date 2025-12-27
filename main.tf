@@ -48,7 +48,7 @@ resource "akamai_cp_code" "cp_code" {
   name        = local.cpcode
   contract_id = data.akamai_contract.contract.id
   group_id    = data.akamai_contract.contract.group_id
-  product_id  = lookup(var.akamai_products, lower(var.product_name))
+  product_id  = var.akamai_products[lower(var.product_name)]
 }
 
 # our dedicated edge hostname for the redirect property using hostname bucket.
